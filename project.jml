@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="mops_tools" version="1.0">
+	<title>Remixer + some utilties in order to process mop files (csv)</title>
+	
+    <target name="trackLib" format="static library">
+		<dependencies>	
+			<library name="poco_net"/>
+			<prj name="daa_icd@static" target="daa_datatypes_icd"/>
+		</dependencies>
+	</target>
+
+	<target name="bin2udp" format="executable">
+		<dependencies>	
+			<prj name="mops_tools" target="trackLib"/>
+			<prj name="daa_icd" target="daa_datatypes_icd"/>
+			<library name="poco_util"/>
+			<library name="poco_foundation"/>
+			<library name="poco_net"/>
+		</dependencies>
+	</target>
+		
+	<target name="bin2txt" format="executable">
+		<dependencies>	
+			<prj name="mops_tools" target="trackLib"/>
+			<prj name="daa_icd@static" target="daa_datatypes_icd"/>
+		</dependencies>
+	</target>
+	
+	<target name="udpServer" format="executable">
+		<dependencies>	
+			<prj name="mops_tools" target="trackLib"/>
+			<prj name="daa_icd@static" target="daa_datatypes_icd"/>
+			<library name="poco_foundation"/>
+			<library name="poco_net"/>
+		</dependencies>
+	</target>
+	
+	<target name="tp_server" format="executable">
+		<dependencies>	
+			<prj name="mops_tools" target="trackLib"/>
+			<library name="poco_foundation"/>
+			<library name="poco_net"/>
+			<library name="poco_xml"/>
+			<library name="poco_util"/>
+			<prj name="daa_icd@static" target="daa_datatypes_icd"/>	
+		</dependencies>
+	</target>
+	
+	<target name="remixerLib" format="static library">
+		<dependencies>	
+			<prj name="mops_tools" target="trackLib"/>
+			<prj name="daa_icd@static" target="daa_datatypes_icd"/>
+			<library name="poco_util"/>
+			<library name="poco_foundation"/>
+		</dependencies>
+	</target>
+
+	<target name="remixer" format="executable">
+		<dependencies>	
+			<prj name="mops_tools" target="trackLib"/>
+			<prj name="mops_tools" target="remixerLib"/>			
+			<prj name="daa_icd@static" target="daa_datatypes_icd"/>
+			<library name="poco_util"/>
+			<library name="poco_foundation"/>
+		</dependencies>
+	</target>
+
+	<target name="mops2kml" format="executable">
+		<dependencies>	
+			<prj name="mops_tools" target="trackLib"/>
+			<prj name="mops_tools" target="remixerLib"/>			
+			<prj name="daa_icd" target="daa_datatypes_icd"/>
+		</dependencies>
+	</target>
+	
+	<target name="ut_remixer" format="executable">
+		<dependencies>
+			<library name="gtest"/>
+			<prj name="mops_tools" target="remixerLib"/>		
+		</dependencies>
+	</target>
+	
+	<target name="avoidance_suscriber" format="executable">
+		<dependencies>
+			<library name="boost"/>
+			<library name="poco_net"/>
+			<library name="poco_xml"/>
+			<prj name="cppiso" target="pococonf"/>	
+			<prj name="yaswim" target="swim_opendds"/>
+			<!--prj name="daa_icd@static" target="daa_datatypes_icd"/-->	
+			<prj name="daa_icd" target="daa_datatypes_icd"/>	
+			<!--prj name="daa_icd@static" target="avoidance_idl"/-->	
+			<prj name="daa_icd" target="avoidance_idl"/>	
+		</dependencies>
+	</target>
+</project>
